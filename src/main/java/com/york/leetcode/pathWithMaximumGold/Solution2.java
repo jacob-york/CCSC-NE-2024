@@ -1,4 +1,4 @@
-package com.york.leetcode;
+package com.york.leetcode.pathWithMaximumGold;
 
 /**
  * <a href="https://leetcode.com/problems/path-with-maximum-gold/">...</a>
@@ -6,5 +6,5 @@ package com.york.leetcode;
  *
  * @author Jacob York
  */
-public class PathWithMaxGold2 {
+public class Solution2 {
 }

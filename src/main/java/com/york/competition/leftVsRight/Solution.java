@@ -1,4 +1,4 @@
-package com.york.competition;
+package com.york.competition.leftVsRight;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -11,7 +11,7 @@ import java.util.Scanner;
  *
  * @author jacob york
  */
-public class LeftVsRight {
+public class Solution {
 
     public static StringBuilder current;
 

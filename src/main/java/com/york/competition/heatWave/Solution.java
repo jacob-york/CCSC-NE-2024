@@ -1,9 +1,9 @@
-package com.york.competition;
+package com.york.competition.heatWave;
 
 /**
  * @author Jacob York
  */
-public class HeatWave {
+public class Solution {
 
     public static int longestHeatWave(int[] temperatures) {
         boolean inHeatWave = false;
