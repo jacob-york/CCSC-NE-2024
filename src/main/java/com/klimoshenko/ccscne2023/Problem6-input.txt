@@ -1,0 +1,10 @@
+2
+square a 10 15
+diamond b 5 10
+0 0 50 20
+3
+square a 5 10
+diamond b 2 5
+square c 2 10
+2000 1000 20 19
+0

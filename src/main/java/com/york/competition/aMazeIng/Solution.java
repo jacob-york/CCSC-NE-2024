@@ -4,7 +4,8 @@ import java.util.*;
 import java.util.stream.Stream;
 
 /**
- * @author Jacob York
+ * !I AM 100% SURE THAT THIS IS BROKEN. IT'S ONLY A COINCIDENCE THAT IT WORKS ON THE GIVEN INPUTS.!
+ * @author (?) Jacob York
  */
 public class Solution {
 
