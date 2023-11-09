@@ -25,6 +25,7 @@
 - My output doesn't match
 - Developing my own algorithm was straightforward, but I spent a lot of time trying to match their exact output and I
   still don't see how they calculated it
+  (edit from Jacob: This problem's prompt turned out to be wrong and the competition just kinda said "my b." No extra points, no compensation, nothing.)
 
 ### Problem 5
 
