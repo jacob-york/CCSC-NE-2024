@@ -1,3 +1,4 @@
+(Everything below this line is Edward's commentary)
 # CCSCNE 2023
 
 ## Problem notes
