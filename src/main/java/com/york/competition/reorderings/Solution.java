@@ -4,7 +4,7 @@ import java.util.*;
 
 /**
  * Reorderings solution, from CCSCE 2016. I prioritized finishing quickly, so some of it could be written better.
- * Finished in around 50 minutes, but could've been done in like 35 if I had practiced permutations ahead of time.
+ * Finished in around 50 minutes.
  *
  * @author Jacob York
  */
