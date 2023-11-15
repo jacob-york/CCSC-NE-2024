@@ -1,9 +1,9 @@
-package com.york.misc;
+package com.york.useful;
 
 import java.util.*;
 
 /**
- * Produces permutations in a certain order (specifiable via the comparator parameter).
+ * Produces permutations in a specified order (specifiable via the comparator parameter).
  * Time Complexity: O(n!)
  * Space Complexity: O(n)
  * @param <T> Type of each element in the sequence.

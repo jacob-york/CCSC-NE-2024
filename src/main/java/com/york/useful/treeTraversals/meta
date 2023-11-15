@@ -1,0 +1,32 @@
+Recursive DFS implementations on a binary tree
+Abstractly, the differences in implementation look like this:
+
+pre-order:
+    dfs(TreeNode root) {
+        if (root == null) return;
+
+        visit(root.val);
+        dfs(root.left);
+        dfs(root.right);
+    }
+
+in-order:
+    dfs(TreeNode root) {
+        if (root == null) return;
+
+        dfs(root.left);
+        visit(root.val);
+        dfs(root.right);
+    }
+
+post-order:
+    dfs(TreeNode root) {
+        if (root == null) return;
+
+        dfs(root.left);
+        dfs(root.right);
+        visit(root.val);
+    }
+
+Where visiting means some computation and is problem-specific.
+In the examples, "visiting" is appending the current value to the running result.
