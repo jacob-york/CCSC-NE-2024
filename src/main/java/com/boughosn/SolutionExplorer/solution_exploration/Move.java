@@ -1,4 +1,4 @@
-package com.boughosn.SolutionExplorer.solution_exploration;
+package solution_exploration;
 
 public abstract class Move
 {
