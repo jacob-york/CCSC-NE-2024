@@ -1,4 +1,4 @@
-package solution_exploration;
+package com.boughosn.SolutionExplorer.solution_exploration;
 
 import java.util.ArrayList;
 

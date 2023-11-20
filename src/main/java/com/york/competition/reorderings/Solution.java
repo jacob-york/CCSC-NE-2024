@@ -46,7 +46,7 @@ public class Solution {
         Map<String, Integer> registers = new HashMap<>();
         registers.put("A", 1);
         registers.put("X", 1);
-        registers.put("Y", 2);
+        registers.put("Y", 1);
 
         for (String[] command : permutation) {
             String instr = command[0];
