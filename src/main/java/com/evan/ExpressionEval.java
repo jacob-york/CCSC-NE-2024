@@ -7,8 +7,12 @@ public class ExpressionEval {
 
     public static void main(String[] args){
         ArrayList<String> inputs = readInputs();
+        ArrayList<Integer> outputs = new ArrayList<>();
         for(String input : inputs){
-            solveLine(input);
+            outputs.add(solveLine(input));
+        }
+        for(Integer i : outputs){
+            System.out.println(i);
         }
     }
 
@@ -23,85 +27,79 @@ public class ExpressionEval {
         }while(!line.equals("quit"));
         return inputs;
     }
-    private static String solveLine(String line){
-
-        if(!line.contains("(") && !line.contains("+") && !line.contains("-") && !line.contains("/") && !line.contains("*")){
-            return line;
+    private static int solveLine(String line){
+        ArrayList<Object> list = new ArrayList<>();
+        String[] sl = line.split(" ");
+        for(String s : sl){
+            try{
+                Integer i = Integer.parseInt(s);
+                list.add(new Node(i));
+            }
+            catch(NumberFormatException e){
+                list.add(s);
+            }
         }
+        while(list.size() > 1){
+            for(int i = 0; i < list.size(); i++){
+                if(list.get(i) instanceof String s){
+                    if(i+1 < list.size() && i-1 >= 0){
+                        if(list.get(i-1) instanceof Node a && list.get(i+1) instanceof Node b && s.length() == 1){
+                            Node n = new Node(a,b,s.charAt(0));
 
-        int to = line.indexOf(')');
-        if(to != -1) {
-            int from = line.substring(0, to).lastIndexOf('(');
-            return solveLine(line.substring(0,from) + atomicParse(line.substring(from,to+1)) + line.substring(to+1));
+                            list.set(i-1,n);
+                            for(int j = i+2; j < list.size(); j++){
+                                list.set(j-2,list.get(j));
+                            }
+                            list.remove(list.size()-2);
+                            list.remove(list.size()-1);
+                        }
+                        if(list.get(i-1) instanceof String a && list.get(i+1) instanceof String b && list.get(i) instanceof Node n){
+                            if(a.equals("(") && b.equals(")")){
+                                list.set(i-1,n);
+                                for(int j = i+2; j < list.size(); j++){
+                                    list.set(j-2,list.get(j));
+                                }
+                                list.remove(list.size()-2);
+                                list.remove(list.size()-1);
+                            }
+                        }
+                    }
+                }
+            }
         }
-        else return atomicParse(line);
+        Object o = list.get(0);
+        if(o instanceof Node n){
+            return n.getValue();
+        }
+        else return 0;
     }
-    private static String atomicParse(String line){
-        for(int i = 0; i < line.length(); i++){
-            switch(line.charAt(i)){
-                case '*':
-                    int firstIndex = i-2;
-                    while(line.charAt(firstIndex) != ' ') firstIndex--;
-                    int lastIndex = i+2;
-                    while(line.charAt(lastIndex) != ' ') lastIndex++;
 
-                    String val1 = line.substring(firstIndex,i-1);
-                    String val2 = line.substring(i+2,lastIndex+1);
-                    int len = val1.length()+val2.length()+3;
-
-                    line = line.substring(0,firstIndex)+(Integer.parseInt(val1) * Integer.parseInt(val2))+line.substring(lastIndex+1);
-                    i -= len;
-
-                    break;
-                case '/':
-                    firstIndex = i-2;
-                    while(line.charAt(firstIndex) != ' ') firstIndex--;
-                    lastIndex = i+2;
-                    while(line.charAt(lastIndex) != ' ') lastIndex++;
-
-                    val1 = line.substring(firstIndex,lastIndex+1);
-                    val2 = line.substring(firstIndex,lastIndex+1);
-                    len = val1.length()+val2.length()+3;
-
-                    line = line.substring(0,firstIndex)+(Integer.parseInt(val1) * Integer.parseInt(val2))+line.substring(lastIndex+1);
-                    i -= len;
-
-                    break;
-            }
+    private static class Node{
+        private Node a;
+        private Node b;
+        private char operator;
+        private int val;
+        public Node(int val){
+            this.val = val;
+            operator = ' ';
+            a = null;
+            b = null;
         }
-
-        for(int i = 0; i < line.length(); i++){
-            switch(line.charAt(i)){
-                case '+':
-                    int firstIndex = i-2;
-                    while(line.charAt(firstIndex) != ' ') firstIndex--;
-                    int lastIndex = i+2;
-                    while(line.charAt(lastIndex) != ' ') lastIndex++;
-
-                    String val1 = line.substring(firstIndex,i-1);
-                    String val2 = line.substring(i+2,lastIndex+1);
-                    int len = val1.length()+val2.length()+3;
-
-                    line = line.substring(0,firstIndex)+(Integer.parseInt(val1) + Integer.parseInt(val2))+line.substring(lastIndex+1);
-                    i -= len;
-
-                    break;
-                case '-':
-                    firstIndex = i-2;
-                    while(line.charAt(firstIndex) != ' ') firstIndex--;
-                    lastIndex = i+2;
-                    while(line.charAt(lastIndex) != ' ') lastIndex++;
-                    val1 = line.substring(firstIndex,lastIndex+1);
-                    val2 = line.substring(firstIndex,lastIndex+1);
-                    len = val1.length()+val2.length()+3;
-
-                    line = line.substring(0,firstIndex)+(Integer.parseInt(val1) - Integer.parseInt(val2))+line.substring(lastIndex+1);
-                    i -= len;
-
-                    break;
-            }
+        public Node(Node a, Node b, char operator){
+            this.a = a;
+            this.b = b;
+            this.operator = operator;
+            val = 0;
         }
-
-        return line;
+        public int getValue(){
+            switch(operator){
+                case ' ': return val;
+                case '+': return a.getValue() + b.getValue();
+                case '-': return a.getValue() - b.getValue();
+                case '*': return a.getValue() * b.getValue();
+                case '/': return a.getValue() / b.getValue();
+            }
+            return val;
+        }
     }
 }
