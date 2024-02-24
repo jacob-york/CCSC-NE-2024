@@ -26,8 +26,9 @@ public class Solution {
     private static List<List<String[]>> separate(List<String> userLines) {
         List<List<String[]>> cases = new ArrayList<>();
 
-        List<String[]> curCase = null;
+        List<String[]> curCase = new ArrayList<>();
         for (String line : userLines) {
+
             try {
                 Integer.parseInt(line);
                 curCase = new ArrayList<>();

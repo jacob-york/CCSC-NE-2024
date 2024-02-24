@@ -36,7 +36,9 @@ public class PermutationAlgorithm<T extends Comparable<T>> {
             current.remove(current.size() - 1);
         }
 
-        if (current.size() == curAvail.length) permutations.add(List.copyOf(current));
+        if (current.size() == curAvail.length && !permutations.contains(current)) {
+            permutations.add(new ArrayList<>(current));
+        }
     }
 
     public static void main(String[] args) {
@@ -44,14 +46,10 @@ public class PermutationAlgorithm<T extends Comparable<T>> {
         Scanner scanner = new Scanner(System.in);
         String[] inputs = scanner.nextLine().split(" ");
 
-        PermutationAlgorithm<String> algorithm = new PermutationAlgorithm<>();
-        List<List<String>> permutations = algorithm.apply(inputs, Comparator.naturalOrder());
-
-        String[] joinedPerms = permutations.stream()
-                .map(permutation -> permutation.toArray(String[]::new))
+        new PermutationAlgorithm<String>()
+                .apply(inputs, Comparator.naturalOrder())
+                .stream()
                 .map(permutation -> String.join(" ", permutation))
-                .toArray(String[]::new);
-
-        System.out.println(String.join("\n", joinedPerms));
+                .forEach(System.out::println);
     }
 }
