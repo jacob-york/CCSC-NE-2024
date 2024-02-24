@@ -9,9 +9,10 @@ public abstract class SolutionExplorer
     public enum ExplorationMode {DEPTH_FIRST, BREADTH_FIRST}
     private ExplorationMode explorationMode;
     private Solution solutionPath;
-    private ArrayList<Solution> foundSolutions;
-    private ArrayList<ProblemData> problems;
-    private ArrayList<Solution> finalSolutions;
+    private static ArrayList<Solution> foundSolutions;
+    private static ArrayList<ArrayList<Solution>> allFoundSolutions;
+    private static ArrayList<ProblemData> problems;
+    private static ArrayList<Solution> finalSolutions;
     private SolutionState currentState;
     private ProblemData currentProblem;
 
@@ -20,10 +21,13 @@ public abstract class SolutionExplorer
     public abstract Solution createNewSolution();
     public abstract SolutionState getInitialState(ProblemData problemData);
 
+    //public static
+
     public SolutionExplorer()
     {
         currentProblem = null;
         finalSolutions = new ArrayList<>();
+        allFoundSolutions = new ArrayList<>();
         //We use depth first by default
         explorationMode = ExplorationMode.DEPTH_FIRST;
     }
@@ -49,6 +53,12 @@ public abstract class SolutionExplorer
     {
         if (explorationMode != null)
             this.explorationMode = explorationMode;
+    }
+
+    public static ArrayList<Solution> getAllSolutions(Solution solution)
+    {
+        int problemIndex = finalSolutions.indexOf(solution);
+        return allFoundSolutions.get(problemIndex);
     }
 
     private void exploreDepthFirst()
@@ -123,6 +133,7 @@ public abstract class SolutionExplorer
                     bestSolution = solution;
             finalSolutions.add(bestSolution);
         }
+        allFoundSolutions.add(foundSolutions);
     }
 
     public void loadAllProblemData()
