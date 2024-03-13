@@ -1,0 +1,16 @@
+cat
+car
+care
+year
+tree
+END
+4 4
+zqxt
+ncry
+peae
+etfr
+3 5
+ranqm
+kects
+ydcaw
+-1
