@@ -8,7 +8,7 @@ import java.util.Queue;
 
 public class levelOrderNary {
 
-    public void levelOrderDfs(Node root, List<Integer> result) {
+    public void levelOrderBfs(Node root, List<Integer> result) {
         Queue<Node> queue = new LinkedList<>();
         if (root != null) queue.add(root);
 
@@ -24,7 +24,7 @@ public class levelOrderNary {
 
     public List<Integer> traverse(Node root) {
         List<Integer> returnVal = new ArrayList<>();
-        levelOrderDfs(root, returnVal);
+        levelOrderBfs(root, returnVal);
         return returnVal;
     }
 }

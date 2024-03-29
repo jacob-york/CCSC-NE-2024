@@ -9,7 +9,7 @@ import java.util.Queue;
 
 public class levelOrderBinary {
 
-    public void levelOrderDfs(TreeNode root, List<Integer> result) {
+    public void levelOrderBfs(TreeNode root, List<Integer> result) {
         Queue<TreeNode> queue = new LinkedList<>();
         if (root != null) queue.add(root);
 
@@ -24,7 +24,7 @@ public class levelOrderBinary {
 
     public List<Integer> traverse(TreeNode root) {
         List<Integer> returnVal = new ArrayList<>();
-        levelOrderDfs(root, returnVal);
+        levelOrderBfs(root, returnVal);
         return returnVal;
     }
 }
